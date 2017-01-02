@@ -7,7 +7,7 @@ View,
 TouchableOpacity,
 } from 'react-native';
 
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 // 'onPress' will only be called only if there is a value in the text area, with value passed in
 
@@ -24,6 +24,7 @@ leftIconSize: React.PropTypes.number,
 textStyle: React.PropTypes.object,
 renderSearchIcon: React.PropTypes.bool,
 onChange: React.PropTypes.func,
+placeholderText: React.PropTypes.string
 };
 
 export default class SearchBar extends Component {
@@ -70,7 +71,7 @@ renderSearchIcon(){
         style={{
           flex: 1,
           backgroundColor: this.props.searchIconBackgroundColor,
-          alignItems:'center',
+          alignItems:'flex-end',
           justifyContent: 'center',
         }}>
         <Icon name={'search'} size={this.props.searchIconSize} color={this.props.searchIconColor} />
@@ -85,11 +86,11 @@ render(){
       {this.renderLeftIcon()}
       <View style={{
         flex: 6,
-        backgroundColor: 'white',
+        backgroundColor: 'transparent',
       }}>
         <TextInput
           ref={(ref) => this.textInput = ref}
-          placeholder={'Search'}
+          placeholder={this.props.placeholderText}
           value={this.state.textInput}
           onChangeText={
             (text) => {
